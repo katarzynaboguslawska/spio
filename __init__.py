@@ -160,7 +160,7 @@ def update_graph_scatter(selected_crypto, date_scope):
         )
 
         return {'data': [data],'layout': go.Layout(
-            xaxis=dict(range=[min(X),max(X)], title=selected_crypto),
+            xaxis=dict(range=[min(X),max(X)], title='currency'),
             yaxis=dict(range=[min(Y),max(Y)], title='price'),
             margin={'l': 70, 'b': 35, 't': 30, 'r': 50},
         )}
