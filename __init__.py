@@ -43,7 +43,8 @@ app.layout = html.Div([  #TODO dodać cały layout strony
          dcc.Dropdown(
              id='yaxis-column',
              options=[{'label': crypto, 'value': crypto} for crypto in available_crypto],
-             value='bitcoin'
+             placeholder='Select the currency here',
+             value=''
          )
      ],
         style={"width": "35%",
@@ -59,7 +60,8 @@ app.layout = html.Div([  #TODO dodać cały layout strony
                 {'label': '1 day', 'value': 'day'},
                 {'label': '1 week', 'value': 'week'}
              ],
-             value='quarter',
+             placeholder='Select the time frame',
+             value='',
          )
      ],
         style={"width": "35%",
@@ -131,6 +133,8 @@ app.layout = html.Div([  #TODO dodać cały layout strony
                Input(component_id='time-offset', component_property='value')],
               events=[Event('graph-update', 'interval')])
 def update_graph_scatter(selected_crypto, date_scope):
+    selected_crypto = selected_crypto if selected_crypto is not '' else "bitcoin"
+    date_scope = date_scope if date_scope is not '' else "quarter"
     offset = offsets[date_scope]
     try:
         ####  DEV  ####
